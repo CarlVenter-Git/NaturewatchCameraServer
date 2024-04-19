@@ -58,6 +58,7 @@ class CameraController(threading.Thread):
         else:
             # Use webcam
             self.logger.info("CameraController: picamera module not found. Using oCV VideoCapture instead.")
+            self.capture = None
             self.initialise_webcam()
 
         self.image = None
@@ -84,16 +85,19 @@ class CameraController(threading.Thread):
                         time.sleep(0.02)
 
                 else:
+                    try:
                     # Get image from webcam
-                    if self.use_splitter_port:
-                        ret, self.splitter_image = self.capture.read()
-                        if self.splitter_image is not None:
-                            self.image = imutils.resize(self.splitter_image, width=self.width, height=self.height)
-                    else:
-                        ret, self.image = self.capture.read()
-
-                    if self.image is None:
-                        self.logger.warning("CameraController: got empty image.")
+                        ret, self.raw_image = self.capture.read()
+                        if self.raw_image is None:
+                            self.logger.warning("CameraController: got empty webcam image.")
+                        else:
+                            self.image = imutils.resize(self.raw_image, width=self.md_width, height=self.md_height)
+                        time.sleep(0.01)
+                    except Exception as e:
+                        self.logger.error("CameraController: webcam update error.")
+                        self.logger.exception(e)
+                        self.initialise_webcam()
+                        time.sleep(0.02)
 
             except KeyboardInterrupt:
                 self.logger.info("CameraController: received KeyboardInterrupt,  shutting down ...")
@@ -111,7 +115,7 @@ class CameraController(threading.Thread):
             self.camera = None
         else:
             # Close webcam
-            cv2.VideoCapture(0).release()
+            self.capture.release()
 
         self.logger.info('CameraController: cancelling ...')
 
@@ -175,10 +179,12 @@ class CameraController(threading.Thread):
                 return None
 
         else:
-            if self.hires_image is not None:
-                return self.hires_image.copy()
-            else:
+            ret, raw_image = self.capture.read()
+            if raw_image is None:
+                self.logger.error("CameraController: webcam returned empty hires image.")
                 return None
+            else:
+                return raw_image.copy()
 
     # Initialise picamera. If already started, close and reinitialise.
     # TODO - reset with manual exposure, if it was set before.
@@ -232,36 +238,36 @@ class CameraController(threading.Thread):
 
         time.sleep(2)
 
-# TODO: Understand
     # initialise webcam
     def initialise_webcam(self):
+        if self.capture is not None:
+            self.capture.release()
+
         self.capture = cv2.VideoCapture(0)
 
         self.shutter_speed = 0
         self.exposure_mode = "auto"
         self.iso = "auto"
 
-        if use_splitter_port is True:
-            self.logger.info("CameraController: using splitter port")
-            self.capture.set(3, width)
-            self.capture.set(4, height)
-        else:
-            self.capture.set(3, md_width)
-            self.capture.set(4, md_height)
+        self.logger.info("CameraController: preparing capture...")
+        self.capture.set(3, self.width)
+        self.capture.set(4, self.height)
 
     # Set camera rotation
     def set_camera_rotation(self, rotation):
         if self.rotated_camera != rotation:
             self.rotated_camera = rotation
             if self.rotated_camera is True:
-                self.camera.rotation = 180
+                if picamera_exists:
+                    self.camera.rotation = 180
                 new_config = self.config
                 new_config["rotate_camera"] = 1
                 module_path = os.path.abspath(os.path.dirname(__file__))
                 self.config = self.update_config(new_config,
                                                  os.path.join(module_path, self.config["data_path"], 'config.json'))
             else:
-                self.camera.rotation = 0
+                if picamera_exists:
+                    self.camera.rotation = 0
                 new_config = self.config
                 new_config["rotate_camera"] = 0
                 module_path = os.path.abspath(os.path.dirname(__file__))
