@@ -43,6 +43,11 @@ def frame():
     current_app.logger.info("Requested camera frame.")
     return Response(generate_jpg(current_app.camera_controller))
 
+@api.route('/create_movie')
+def create_movie():
+    current_app.logger.info("Requested movie creation")
+    return Response(generate_jpg(current_app.create_movie))
+
 
 def generate_jpg(camera_controller):
     """
