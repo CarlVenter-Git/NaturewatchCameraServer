@@ -44,8 +44,8 @@ raspi-config nonint do_legacy 0
 
 echo "Installing OpenCV"
 pip install --upgrade pip --break-system-packages
-pip install --upgrade pip setuptools wheel
-pip install -U pip numpy opencv-python-headless
+pip install --upgrade pip setuptools wheel --break-system-packages
+pip install -U pip numpy opencv-python-headless --break-system-packages
 
 pushd /home/pi
 	pushd NaturewatchCameraServer
