@@ -51,6 +51,7 @@ jobs:
         cp -r repository /tmp/TimelapseCameraServer
         rm -rf /tmp/TimelapseCameraServer/os
         rm -rf /tmp/TimelapseCameraServer/timelapse_camera_server/static/client/node_modules
+        mkdir repository/os/modules/timelapsecamera/filesystem/home/pi/TimelapseCameraServer
         mv /tmp/TimelapseCameraServer repository/os/modules/timelapsecamera/filesystem/home/pi/TimelapseCameraServer
         ls repository/os/modules/timelapsecamera/filesystem/home/pi/TimelapseCameraServer
 
