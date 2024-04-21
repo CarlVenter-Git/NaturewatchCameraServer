@@ -42,7 +42,7 @@ class GalleryGrid extends React.Component {
             <div key={item.thumbnail} className="gallery-thumbnail">
                 {this.renderSelectIcon(item)}
                 <LazyLoad>
-                    <img alt="Captured by Naturewatch Camera" src={item.thumbnail} onClick={this.handleThumbnailClick.bind(this, item)}/>
+                    <img alt="Captured by TimeLapse Camera" src={item.thumbnail} onClick={this.handleThumbnailClick.bind(this, item)}/>
                 </LazyLoad>
             </div>
         );

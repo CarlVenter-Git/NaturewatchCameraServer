@@ -4,8 +4,8 @@ import json
 import time
 import datetime
 import os
-from naturewatch_camera_server import create_app
-from naturewatch_camera_server.FileSaver import FileSaver
+from timelapse_camera_server import create_app
+from timelapse_camera_server.FileSaver import FileSaver
 
 photos_list = list()
 videos_list = list()

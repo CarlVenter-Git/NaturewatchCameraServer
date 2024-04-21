@@ -1,0 +1,12 @@
+[Unit]
+Description=My TimeLapse Camera Server
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/python3 -m timeLapse_camera_server -p 80
+WorkingDirectory=/home/pi/TimeLapseCameraServer
+Restart=on-failure
+User=root
+
+[Install]
+WantedBy=multi-user.target

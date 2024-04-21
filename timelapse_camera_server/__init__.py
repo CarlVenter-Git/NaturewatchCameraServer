@@ -5,13 +5,13 @@ import os
 import sys
 from shutil import copyfile
 from logging.handlers import RotatingFileHandler
-from naturewatch_camera_server.CameraController import CameraController
-from naturewatch_camera_server.ChangeDetector import ChangeDetector
-from naturewatch_camera_server.FileSaver import FileSaver
+from timelapse_camera_server.CameraController import CameraController
+from timelapse_camera_server.ChangeDetector import ChangeDetector
+from timelapse_camera_server.FileSaver import FileSaver
 from flask import Flask
-from naturewatch_camera_server.api import api
-from naturewatch_camera_server.data import data
-from naturewatch_camera_server.static_page import static_page
+from timelapse_camera_server.api import api
+from timelapse_camera_server.data import data
+from timelapse_camera_server.static_page import static_page
 
 
 def create_app():
@@ -93,6 +93,6 @@ def create_error_app(e):
 
     @flask_app.route('/')
     def index():
-        return f"<html><body><h1>Unable to start NaturewatchCameraServer.</h1>An error occurred:<pre>{e}</pre></body></html>"
+        return f"<html><body><h1>Unable to start TimelapseCameraServer.</h1>An error occurred:<pre>{e}</pre></body></html>"
 
     return flask_app
