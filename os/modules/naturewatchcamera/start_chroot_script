@@ -51,7 +51,7 @@ pushd /home/pi
 	pushd NaturewatchCameraServer
 
 		echo "Installing repo dependencies"
-		pip install -r requirements-pi.txt
+		pip install -r requirements-pi.txt --break-system-packages
 
 		echo "Adding services"
 		mv helpers/python.naturewatch.service /etc/systemd/system/python.naturewatch.service
