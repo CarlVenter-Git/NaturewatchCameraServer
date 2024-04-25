@@ -1,9 +1,9 @@
-from timelapse_camera_server import create_app, create_error_app
+from naturewatch_camera_server import create_app, create_error_app
 from picamera.exc import PiCameraError
 import argparse
 import subprocess
 
-parser = argparse.ArgumentParser(description='Launch My Timelapse Camera')
+parser = argparse.ArgumentParser(description='Launch My Naturewatch Camera')
 parser.add_argument('-p', action='store', dest='port', default=5000,
                     help='Port number to attach to')
 args = parser.parse_args()

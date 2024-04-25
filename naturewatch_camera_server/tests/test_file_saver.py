@@ -4,8 +4,8 @@ import json
 import os
 import time
 import datetime
-from timelapse_camera_server import create_app
-from timelapse_camera_server.FileSaver import FileSaver
+from naturewatch_camera_server import create_app
+from naturewatch_camera_server.FileSaver import FileSaver
 
 file_saver = None
 app = None

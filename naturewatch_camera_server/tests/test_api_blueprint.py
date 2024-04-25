@@ -2,7 +2,7 @@ import pytest
 import sys
 import json
 import time
-from timelapse_camera_server import create_app
+from naturewatch_camera_server import create_app
 
 
 @pytest.fixture(scope="session")
@@ -29,7 +29,7 @@ def test_root_page(test_client):
     """
     response = test_client.get('/')
     assert response.status_code == 200
-    assert b"My TimeLapse Camera" in response.data
+    assert b"My Naturewatch Camera" in response.data
 
 
 def test_jpg(test_client):

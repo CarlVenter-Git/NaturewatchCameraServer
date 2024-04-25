@@ -13,14 +13,14 @@ print("hostapd configuration - SSID: " + currentSSID)
 #print("hostapd configuration - Passphrase: " + currentPassphrase)
 
 # get SSID and passphrase from user configuration file
-#nwConfigFileName = "/boot/_timelapse-configuration.txt"
+#nwConfigFileName = "/boot/_naturewatch-configuration.txt"
 #with open(nwConfigFileName, "r") as file:
 #    nwConfigFile = file.readlines()
 #configFileSSID = nwConfigFile[1].strip()
 #configFilePassphrase = nwConfigFile[3].strip()
-#if "myTimelapseCam" in configFileSSID :
+#if "myNatureWatchCam" in configFileSSID :
 unique_id = subprocess.check_output("sed -n 's/^Serial\s*: 0*//p' /proc/cpuinfo", shell=True)
-configFileSSID = "Timelapse-" + unique_id.strip().decode('utf-8')
+configFileSSID = "MyNaturewatch-" + unique_id.strip().decode('utf-8')
 print("Wifi Updated to unique name")
 
 #print("Boot configuration - SSID: " + configFileSSID)

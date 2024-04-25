@@ -1,6 +1,6 @@
-export DIST_NAME=MyTimeLapseCamera
+export DIST_NAME=MyNaturewatchCamera
 export DIST_VERSION=1.0
-export MODULES="base(admin-toolkit,network,disable-services(auto-hotspot,raspicam,timelapsecamera))"
+export MODULES="base(admin-toolkit,network,disable-services(auto-hotspot,raspicam,naturewatchcamera))"
 export BASE_IMAGE_ENLARGEROOT=2000
 export AUTO_HOTSPOT_NAME=Timelapse Camera
 export AUTO_HOTSPOT_PASSWORD=Timelapse

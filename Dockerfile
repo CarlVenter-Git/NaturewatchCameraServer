@@ -8,10 +8,10 @@ RUN apt-get update
 RUN apt-get install -y gpac
 
 # Bundle source
-COPY timelapse_camera_server timelapse_camera_server
+COPY naturewatch_camera_server naturewatch_camera_server
 
 # Expose port
 EXPOSE 5000
 
 # Run
-CMD ["python3", "-m", "timelapse_camera_server"]
+CMD ["python3", "-m", "naturewatch_camera_server"]

@@ -5,7 +5,7 @@ from datetime import datetime
 import time
 import imutils
 import logging
-from timelapse_camera_server.FileSaver import FileSaver
+from naturewatch_camera_server.FileSaver import FileSaver
 
 
 class ChangeDetector(Thread):

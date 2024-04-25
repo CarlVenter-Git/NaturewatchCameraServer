@@ -12,7 +12,7 @@ print("hostapd configuration - SSID: " + currentSSID)
 print("hostapd configuration - Passphrase: " + currentPassphrase)
 
 # get SSID and passphrase from user configuration file
-nwConfigFileName = "/boot/_timelapse-configuration.txt"
+nwConfigFileName = "/boot/_naturewatch-configuration.txt"
 with open(nwConfigFileName, "r") as file:
     nwConfigFile = file.readlines()
 configFileSSID = nwConfigFile[1].strip()

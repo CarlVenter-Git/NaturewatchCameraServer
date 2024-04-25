@@ -1,14 +1,14 @@
 version: "3"
 services:
-  timelapsecameraserver:
-    container_name: timelapsecameraserver
+  naturewatchcameraserver:
+    container_name: naturewatchcameraserver
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "80:5000"
     volumes:
-      - "/home/pi/data:/timelapse_camera_server/static/data"
+      - "/home/pi/data:/naturewatch_camera_server/static/data"
     devices:
       - "/dev/vcsm"
       - "/dev/vchiq"
