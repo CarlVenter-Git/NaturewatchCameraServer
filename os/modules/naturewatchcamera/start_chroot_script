@@ -43,15 +43,15 @@ echo "Enabling legacy camera support for Pi Zero W 2"
 raspi-config nonint do_legacy 0
 
 echo "Installing OpenCV"
-pip install --upgrade pip --break-system-packages
-pip install --upgrade pip setuptools wheel --break-system-packages
-pip install -U pip numpy opencv-python-headless --break-system-packages
+pip3 install --upgrade pip --break-system-packages
+pip3 install --upgrade pip setuptools wheel --break-system-packages
+pip3 install -U pip numpy opencv-python-headless --break-system-packages
 
 pushd /home/pi
 	pushd NaturewatchCameraServer
 
 		echo "Installing repo dependencies"
-		pip install -r requirements-pi.txt --break-system-packages
+		pip3 install -r requirements-pi.txt --break-system-packages
 
 		echo "Adding services"
 		mv helpers/python.naturewatch.service /etc/systemd/system/python.naturewatch.service
